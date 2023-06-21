@@ -7,7 +7,6 @@ namespace DEMO.Core{
         [SerializeField] Transform[] waypoints; 
         Transform currentWaypoint;
         Transform targetWaypoint;
-        Transform originalParent;
         float platformSpeed = 5f;
         float timeSinceReachWaypoint = 0;
         float wayponitWaitTime = 1.5f;
