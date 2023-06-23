@@ -6,7 +6,7 @@ namespace DEMO.Core{
         [HideInInspector] public Transform targetTransform;
         [SerializeField] float tornadoSpeed = 5f;
         Vector3 distanceVector;
-        float distanceTolerance = 0.01f;
+        float distanceTolerance = 0.1f;
         private void Update(){
             distanceVector = targetTransform.position - transform.position;
             if (distanceVector.magnitude <= distanceTolerance){
