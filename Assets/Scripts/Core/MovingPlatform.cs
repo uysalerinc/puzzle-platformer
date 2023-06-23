@@ -49,9 +49,11 @@ namespace DEMO.Core{
         }
 
         private void OnCollisionEnter2D(Collision2D other) {
+            if (other.gameObject.tag != "Player") return;
             other.transform.SetParent(transform);
         }
         private void OnCollisionExit2D(Collision2D other) {
+            if (other.gameObject.tag != "Player") return;
             other.transform.SetParent(null);
         }
     }
