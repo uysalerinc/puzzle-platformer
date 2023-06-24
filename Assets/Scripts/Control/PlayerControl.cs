@@ -36,11 +36,13 @@ namespace DEMO.Control{
             Movement();
             Jump();
             UpdateAnimator();
+            if (isGrounded()){
+                airJumpCount = 0;
+            }
         }
 
 
-        private bool isGrounded()
-        {
+        private bool isGrounded(){
             RaycastHit2D isGrounded = Physics2D.BoxCast(groundCheck.position, groundCheckSize, 0f, Vector2.down, 0f , groundLayer);
             Debug.DrawRay(groundCheck.position, new Vector3(groundCheckSize.x ,0 ,0), Color.green);
             Debug.DrawRay(groundCheck.position, new Vector3(0 ,-groundCheckSize.y ,0), Color.green);
@@ -48,24 +50,21 @@ namespace DEMO.Control{
            
         }
 
-        private void Jump()
-        {
+        private void Jump(){
             if (isGrounded() && Input.GetKeyDown(KeyCode.Space)){
                 rb.velocity = new Vector2(0, jumpForce);
-                airJumpCount = 0;
+               // airJumpCount = 0;
             } else if (Input.GetKeyDown(KeyCode.Space) && airJumpCount < MAX_AIR_JUMP_COUNT){
                 rb.velocity = new Vector2(0, jumpForce);
                 airJumpCount ++;
             }
         }
 
-        private void UpdateAnimator()
-        {
+        private void UpdateAnimator(){
             animator.SetBool("isMoving", isMoving);
         }
 
-        private void Movement()
-        {
+        private void Movement(){
             direction = Input.GetAxisRaw("Horizontal");
             rb.velocity = new Vector2(direction * speed, rb.velocity.y);
             if (direction != 0){
